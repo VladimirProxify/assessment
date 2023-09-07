@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CampaignController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Create a route for POST -> /api/campaign/create.
+// That how it looks, but best practice is implemented below
+// Route::post('/campaign/create', [CampaignController::class, 'store']);
+
+
+Route::get('/campaigns', [CampaignController::class, 'index']);
+Route::post('/campaigns', [CampaignController::class, 'store']);
+Route::patch('/campaigns/{campaign}', [CampaignController::class, 'update']);
+Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy']);
